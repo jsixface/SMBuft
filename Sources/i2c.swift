@@ -71,19 +71,19 @@ public class I2CHardware
         var data : UnsafeMutableRawPointer
     }
     
-    func i2c_smbus_access ( rw: UInt8,  command:UInt8,  size:Int, data: UnsafeMutableRawPointer)
+    func i2c_smbus_access ( rw: UInt8,  command:UInt8,  size:Int, data: UnsafeMutableRawPointer) -> CInt
     {
         var args = i2c_smbus_ioctl_data(read_write: rw, command: command, size: size, data: data)
-        _ = ioctl (fd, I2C_SMBUS, &args)
+        return ioctl (fd, I2C_SMBUS, &args)
     }
     
-    func writeByteData ( reg: UInt8,  value : UInt8)
+    func writeByteData ( reg: UInt8,  value : UInt8) -> CInt
     {
         var data = value & 0xFF;
         return i2c_smbus_access (rw: I2C_SMBUS_WRITE, command: reg, size: I2C_SMBUS_BYTE_DATA, data: &data)
     }
     
-    func writeWordData ( reg: UInt8,  value: UInt16)
+    func writeWordData ( reg: UInt8,  value: UInt16) -> CInt 
     {
         var data = value & 0xffff
         return i2c_smbus_access (rw: I2C_SMBUS_WRITE, command: reg, size: I2C_SMBUS_WORD_DATA, data: &data)

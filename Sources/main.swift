@@ -2,7 +2,8 @@ import Foundation
 
 func execute()
 {
-    _ = I2CHardware(atAddress: 0x3c)
+    let disp = SSD1306(0x3c)
+//    disp.
 }
 
 execute()

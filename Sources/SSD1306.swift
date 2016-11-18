@@ -46,5 +46,11 @@ public class SSD1306
     let SSD1306_VERTICAL_AND_RIGHT_HORIZONTAL_SCROLL : Int = 0x29
     let SSD1306_VERTICAL_AND_LEFT_HORIZONTAL_SCROLL : Int = 0x2A
     
-    
+    let hardware: I2CHardware
+
+    init(_ address: CInt)
+    {
+       hardware = I2CHardware(atAddress: 0x3c)
+       
+    }
 }
